@@ -19,6 +19,14 @@ public class MessageService {
         this.messageRepository = messageRepository;
     }
 
+    //create new message
+    public Message createNewMessage(Message message) throws Exception{
+        if(message == null || message.getMessageText().isBlank()){
+            throw new Exception("no message");
+        }
+        return messageRepository.save(message);
+    }
+
     //get all messages
     public List<Message> getAllMessages(){
         return messageRepository.findAll();
