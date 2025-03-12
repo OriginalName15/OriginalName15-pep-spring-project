@@ -67,7 +67,8 @@ public class SocialMediaController {
     //retrieve all messages
     @GetMapping("/messages")
     public ResponseEntity<List<Message>> getAllMessages() {
-        return null;
+        List<Message> messages = messageService.getAllMessages();
+        return new ResponseEntity<>(messages, HttpStatus.OK);
     }
 
     //get message by id
