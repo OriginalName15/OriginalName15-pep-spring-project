@@ -50,7 +50,12 @@ public class SocialMediaController {
     //login account
     @PostMapping("/login")
     public ResponseEntity<Account> login(@RequestBody Account account){
-        return null;
+        try{
+            Account loginAccount = accountService.login(account);
+            return new ResponseEntity<>(loginAccount, HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+        }
     }
 
     //create new message

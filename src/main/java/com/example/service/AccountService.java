@@ -32,4 +32,18 @@ public class AccountService {
         }
         return accountRepository.save(account);
     }
+
+    //login account
+    public Account login(Account account) throws Exception{
+        Optional<Account> existingAccount = accountRepository.findByUsername(account.getUsername());
+        if(!existingAccount.isPresent()){
+            throw new Exception("no account");
+        }
+
+        Account storedAccount = existingAccount.get();
+        if(!storedAccount.getPassword().equals(account.getPassword())){
+            throw new Exception("wrong password");
+        }
+        return storedAccount;
+    }
 }
