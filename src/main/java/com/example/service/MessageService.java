@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.entity.Account;
 import com.example.entity.Message;
 import com.example.repository.MessageRepository;
 import com.example.repository.AccountRepository;
@@ -30,5 +31,14 @@ public class MessageService {
     //get all messages
     public List<Message> getAllMessages(){
         return messageRepository.findAll();
+    }
+
+    //get message by id
+    public Message getMessageByID(int messageId){
+        Optional<Message> optionalMessage = messageRepository.findById(messageId);
+        if(optionalMessage.isPresent()){
+            return optionalMessage.get();
+        }
+        return null;
     }
 }
