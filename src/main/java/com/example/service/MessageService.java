@@ -51,4 +51,16 @@ public class MessageService {
         }
         return 0;
     }
+
+    //update message
+    public int updateMessage(int messageId, Message message) throws Exception{
+        Optional<Message> optionalMessage = messageRepository.findById(messageId);
+        if(!optionalMessage.isPresent()){
+            throw new Exception("wrong message id");
+        }
+        if(message.getMessageText().isBlank() || message.getMessageText().length() > 255){
+            throw new Exception("message text wrong");
+        }
+        return 1;
+    }
 }

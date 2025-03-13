@@ -98,7 +98,12 @@ public class SocialMediaController {
     //update message by id
     @PatchMapping("/messages/{messageId}")
     public ResponseEntity<Integer> updateMessage(@PathVariable int messageId, @RequestBody Message message) {
-        return null;
+        try{
+            int updatedMessage = messageService.updateMessage(messageId, message);
+            return new ResponseEntity<>(updatedMessage, HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
     }
 
     //get all messages by user
